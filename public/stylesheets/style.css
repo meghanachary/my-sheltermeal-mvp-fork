@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.container {
+  background-image: url('images/newyork.jpg');
+  background-size: cover;
+}
