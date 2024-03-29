@@ -1,7 +1,9 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Impact-fantasy;
+  /* Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
   font-weight: 400;
+ 
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -15,25 +17,33 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #090909;
   text-decoration: inherit;
 }
+
 a:hover {
-  color: #535bf2;
+  color: #f1f1f1;
+  
+  
 }
 
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  align-items: flex-start;
   min-width: 320px;
   min-height: 100vh;
+  
 }
+
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-weight: bold;
+  text-align: left;
 }
+
 
 button {
   border-radius: 8px;
@@ -47,7 +57,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #020202;
 }
 button:focus,
 button:focus-visible {
@@ -56,13 +66,25 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: #ffffff;
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #0b0a0a;
   }
   button {
     background-color: #f9f9f9;
   }
+}
+
+nav ul li a {
+  font-family: "Impact-fantasy"; 
+  font-weight: bold; 
+  font-size: 1.2em;
+  color: #070707; 
+  text-decoration: none; 
+}
+
+nav ul li a:hover {
+  color: #000000; 
 }

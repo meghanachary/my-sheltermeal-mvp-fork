@@ -4,10 +4,29 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+    <title>Background Image Example</title>
+    <style>
+      body{
+       background-image: url('newyork2.jpg');
+       background-size: cover;
+       height: 100vh;
+       background-position: center calc(65% - 20px);
+       background-repeat: no repeat;
+      }
+    </style>
+   </head>
+   <body>
+     <div id="root">
+       <nav>
+         <ul>
+           <li><a href="#" id="home">Home</a></li>
+           <li><a href="#" id="restaurant">Restaurant</a></li>
+         </ul>
+       </nav>
+     </div>
+     <script type="module" src="/src/main.jsx"></script>
+   </body>
+ </html>
+
+
+
