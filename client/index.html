@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,27 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Background Image Example</title>
     <style>
-      body{
-       background-image: url('newyork2.jpg');
-       background-size: cover;
-       height: 100vh;
-       background-position: center calc(65% - 20px);
-       background-repeat: no repeat;
+      body {
+        background-image: url("newyork2.jpg");
+        background-size: cover;
+        height: 100vh;
+        background-position: center calc(65% - 20px);
+        background-repeat: no repeat;
       }
     </style>
-   </head>
-   <body>
-     <div id="root">
-       <nav>
-         <ul>
-           <li><a href="#" id="home">Home</a></li>
-           <li><a href="#" id="restaurant">Restaurant</a></li>
-         </ul>
-       </nav>
-     </div>
-     <script type="module" src="/src/main.jsx"></script>
-   </body>
- </html>
-
-
-
+    <!--Adding the leaflet CSS link here-->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+    />
+  </head>
+  <body>
+    <div id="root">
+      <nav>
+        <ul>
+          <li><a href="#" id="home">Home</a></li>
+          <li><a href="#" id="restaurant">Restaurant</a></li>
+        </ul>
+      </nav>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
