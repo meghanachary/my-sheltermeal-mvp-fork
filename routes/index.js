@@ -1,132 +1,120 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
 
-
-router.get('/', function(req, res, next) {
-  res.send({ title: 'Express' });
+router.get("/", function (req, res, next) {
+  res.send({ title: "Express" });
 });
 
-router.get("/establishment", async (req, res)  =>{
-
- try {
-  const query = "SELECT * FROM establishment;"
-  const results = await db (query);
-  res.send(results.data);
- } catch (error) {
-  console.error("Error getting establishment:", error)
-  res.status(500). send("Error getting establishment:");
- }
+router.get("/establishment", async (req, res) => {
+  try {
+    const query = "SELECT * FROM establishment;";
+    const results = await db(query);
+    res.send(results.data);
+  } catch (error) {
+    console.error("Error getting establishment:", error);
+    res.status(500).send("Error getting establishment:");
+  }
 });
 
-
-router.get("/establishment/:id", async(req,res) => {
-
+router.get("/establishment/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
     const query = `SELECT * FROM establishment WHERE id = ${id};`;
-    const results = await db (query);
+    const results = await db(query);
     res.send(results.data);
   } catch (error) {
-    console.log("Error getting establishment by id", error)
-    res.status(500). send("Error getting establishment by id");
+    console.log("Error getting establishment by id", error);
+    res.status(500).send("Error getting establishment by id");
   }
 });
 
-router.post("/establishment", async (req, res) =>{
-
+router.post("/establishment", async (req, res) => {
   const { name, address, area } = req.body;
 
-  try{
-    await db (
-      `INSERT INTO establishment (name, address, area) VALUES ('${name}', '${address}','${area}');` 
-  );
-  const result = await db ("SELECT * FROM establishment;"); 
-  res.send(result.data);
- } catch (error) {
-  console.error("Error adding establishment", error)
-  res.status(500). send ("Error adding establishment");
- }
+  try {
+    await db(
+      `INSERT INTO establishment (name, address, area) VALUES ('${name}', '${address}','${area}');`
+    );
+    const result = await db("SELECT * FROM establishment;");
+    res.send(result.data);
+  } catch (error) {
+    console.error("Error adding establishment", error);
+    res.status(500).send("Error adding establishment");
+  }
 });
-
 
 router.delete("/establishment/:id", async (req, res) => {
-
   const { id } = req.params;
 
-  try{
-    await db(`DELETE FROM establishment WHERE id = ${id};`)
-    res.status(200).send("establishment was deleted successfully"); 
+  try {
+    await db(`DELETE FROM establishment WHERE id = ${id};`);
+    res.status(200).send("establishment was deleted successfully");
   } catch (error) {
-    console.error("Failed to delete establishment:", error)
-    res.status(500). send( "Failed deleting establishment");
+    console.error("Failed to delete establishment:", error);
+    res.status(500).send("Failed deleting establishment");
   }
 });
 
+router.get("/postmeal", async (req, res) => {
+  try {
+    const query = "SELECT * FROM postmeal;";
+    const results = await db(query);
+    res.send(results.data);
+  } catch (error) {
+    console.error("Error getting postmeal:", error);
+    res.status(500).send("Error getting postmeal:");
+  }
+});
 
-router.get("/postmeal", async (req, res)  =>{
+router.get("/postmeal/:id", async (req, res) => {
+  const { id } = req.params;
 
   try {
-   const query = "SELECT * FROM postmeal;"
-   const results = await db (query);
-   res.send(results.data);
-  } catch (error) {
-   console.error("Error getting postmeal:", error)
-   res.status(500). send("Error getting postmeal:");
-  }
- });
- 
- 
- router.get("/postmeal/:id", async(req,res) => {
-   const { id } = req.params;
-
-   try {
     const query = `SELECT * FROM postmeal WHERE id = ${id};`;
-    const results = await db (query);
-     res.send(results.data);
-   } catch (error) {
-     console.log("Failed to get postmeal by id", error)
-     res.status(500). send("Failed getting postmeal by id");
-   }
- });
- 
- router.post("/postmeal", async (req, res) =>{
-   const { restaurant_id, shelter_name, description,  time_frame } = req.body;
-
-   try{
-     await db (
-       `INSERT INTO postmeal (restaurant_id, shelter_name, description, is_taken,  time_frame) 
-       VALUES ('${restaurant_id}', '${shelter_name}','${description}', 'false', '${time_frame}');` 
-   );
-   const result = await db ("SELECT * FROM postmeal;"); 
-   res.send(result.data);
+    const results = await db(query);
+    res.send(results.data);
   } catch (error) {
-   console.error("Error adding postmeal", error)
-   res.status(500). send ("Error adding postmeal");
+    console.log("Failed to get postmeal by id", error);
+    res.status(500).send("Failed getting postmeal by id");
   }
- });
- 
- 
- router.delete("/postmeal/:id", async (req, res) => {
-   const { id } = req.params;
+});
 
-   try{
-     await db(`DELETE FROM postmeal WHERE id = ${id};`)
-     res.status(200).send("postmeal deleted successfully"); 
-   } catch (error) {
-     console.error("Error deleting postmeal:", error)
-     res.status(500). send( "Error deleting postmeal");
-   }
- });
+router.post("/postmeal", async (req, res) => {
+  const { restaurant_id, shelter_name, description, time_frame } = req.body;
 
+  try {
+    await db(
+      `INSERT INTO postmeal (restaurant_id, shelter_name, description, is_taken,  time_frame) 
+       VALUES ('${restaurant_id}', '${shelter_name}','${description}', 'false', '${time_frame}');`
+    );
+    const result = await db("SELECT * FROM postmeal;");
+    res.send(result.data);
+  } catch (error) {
+    console.error("Error adding postmeal", error);
+    res.status(500).send("Error adding postmeal");
+  }
+});
+
+router.delete("/postmeal/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await db(`DELETE FROM postmeal WHERE id = ${id};`);
+    res.status(200).send("postmeal deleted successfully");
+  } catch (error) {
+    console.error("Error deleting postmeal:", error);
+    res.status(500).send("Error deleting postmeal");
+  }
+});
 
 router.get("/restaurants", async (req, res) => {
   let { area } = req.query;
 
   try {
     let query;
-    if (typeof area === 'undefined' || area === '') {
+    if (typeof area === "undefined" || area === "") {
       // No area specified, fetch all restaurants
       query = `SELECT * FROM establishment;`;
     } else {
@@ -141,42 +129,38 @@ router.get("/restaurants", async (req, res) => {
       res.status(404).send("Restaurant not found");
     } else {
       const restaurantData = results.data;
-      console.log("Restaurant data:", restaurantData); 
+      console.log("Restaurant data:", restaurantData);
       res.send(restaurantData);
-    } 
+    }
   } catch (error) {
     console.error("Error getting restaurants:", error);
     res.status(500).send("Error getting restaurants");
   }
 });
 
-
-
-
 router.get("/restaurant/:id/", async (req, res) => {
   const { id } = req.params;
 
   try {
     const query = `SELECT * FROM establishment WHERE id = '${id}';`;
-    console.log("Query:", query); 
+    console.log("Query:", query);
     const results = await db(query);
-    console.log("Results:", results); 
+    console.log("Results:", results);
     if (results.data.length === 0) {
       console.log("No restaurant found with ID:", id);
       res.status(404).send("Restaurant not found");
     } else {
       const restaurantData = results.data[0];
-      console.log("Restaurant data:", restaurantData); 
+      console.log("Restaurant data:", restaurantData);
       res.send(restaurantData);
-    } 
+    }
   } catch (error) {
     console.error("Error getting restaurant:", error);
     res.status(500).send("Error getting restaurant");
   }
 });
 
-
- router.get("/restaurant/:id/meals", async (req, res) => {
+router.get("/restaurant/:id/meals", async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -188,11 +172,5 @@ router.get("/restaurant/:id/", async (req, res) => {
     res.status(500).send("Error getting meals for restaurant");
   }
 });
-
- 
-
-
-
-
 
 module.exports = router;

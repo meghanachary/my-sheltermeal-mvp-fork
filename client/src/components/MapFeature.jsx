@@ -7,12 +7,24 @@ import { Icon } from "leaflet";
 
 const MapFeature = () => {
   return (
-    <MapContainer center={[40.7128, -74.006]} zoom={16} scrollWheelZoom={false}>
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      />
-    </MapContainer>
+    <>
+      <div className="map-about">
+        <h3>
+          Welcome! Here you can find Restaurants (🍴)or Shelters(💗) in your
+          area to build connections with your community.
+        </h3>
+      </div>
+      <MapContainer
+        center={[40.7736, -73.9566]}
+        zoom={14}
+        scrollWheelZoom={false}
+      >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+      </MapContainer>
+    </>
   );
 };
 export default MapFeature;

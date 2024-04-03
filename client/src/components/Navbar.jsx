@@ -19,7 +19,7 @@ const Navbar = () => {
             <Link to="/join-us">Join Us</Link>
           </li>
           <li>
-            <Link to="/map-feature">Map Feature</Link>
+            <Link to="/map-feature">Search the Map🔎</Link>
           </li>
         </ul>
       </div>
