@@ -113,6 +113,22 @@ nav ul li {
   font-weight: bold;
 }
 
+/*Below I've just grabbed the Restaurant styling elements to reuse for my Shelters elements.*/
+.shelter-container {
+  top: 40px;
+  position: relative;
+  left: -20px;
+}
+.shelter-link {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: block;
+  color: black;
+  font-weight: bold;
+}
+
 .about-section {
   background-color: rgba(255, 255, 255, 0.7);
   padding: 20px;

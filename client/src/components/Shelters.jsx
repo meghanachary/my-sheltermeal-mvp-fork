@@ -7,11 +7,11 @@ const Shelters = () => {
       <h2>Shelters</h2>
       <ul>
         <li>
-          <Link to="/uesShelters" className="shelter-link">
-            Upper East Side
+          <Link to="/UesShelters" className="shelter-link">
+            UES
           </Link>
-          <Link to="/uwsShelters" className="shelter-link">
-            Upper West Side
+          <Link to="/UwsShelters" className="shelter-link">
+            UWS
           </Link>
         </li>
       </ul>
