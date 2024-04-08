@@ -23,22 +23,22 @@ const UES = () => {
     fetchRestaurants();
   }, []);
 
-  // Creating another one for shelters
-  useEffect(() => {
-    const fetchShelters = async () => {
-      // fetch shelters in UES
-      try {
-        const area = encodeURIComponent("Upper East Side");
-        const response = await fetch(`/api/shelters?area=${area}`);
-        const data = await response.json();
-        setShelters(data);
-      } catch (error) {
-        console.error("Error fetching Upper East Side shelters", error);
-      }
-    };
+  // // Creating another one for shelters
+  // useEffect(() => {
+  //   const fetchShelters = async () => {
+  //     // fetch shelters in UES
+  //     try {
+  //       const area = encodeURIComponent("Upper East Side");
+  //       const response = await fetch(`/api/shelters?area=${area}`);
+  //       const data = await response.json();
+  //       setShelters(data);
+  //     } catch (error) {
+  //       console.error("Error fetching Upper East Side shelters", error);
+  //     }
+  //   };
 
-    fetchShelters();
-  }, []);
+  //   fetchShelters();
+  // }, []);
 
   useEffect(() => {
     if (restaurants.length > 1) {
@@ -47,6 +47,15 @@ const UES = () => {
       setShowBackButton(false);
     }
   }, [restaurants]); //run this effect when restaurants state changes
+
+  // // Same thing but for shelters
+  // useEffect(() => {
+  //   if (shelters.length > 1) {
+  //     setShowBackButton(true);
+  //   } else {
+  //     setShowBackButton(false);
+  //   }
+  // }, [shelters]); //run this effect when restaurants state changes
 
   const handleBack = () => {
     window.history.back();
@@ -67,7 +76,7 @@ const UES = () => {
           </li>
         ))}
       </ul>
-      {/* Creating the same but for shelters, below */}
+      {/* Creating the same but for shelters, below
       <ul>
         {shelters.map((shelter) => (
           <li key={shelter.id}>
@@ -76,7 +85,7 @@ const UES = () => {
             </li>
           </li>
         ))}
-      </ul>
+      </ul> */}
       {showBackButton && <button onClick={handleBack}>Back</button>}
     </div>
   );
