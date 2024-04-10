@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // import { Link } from "react-router-dom"; // keeping it here in case this is needed
 
 // Attempt 1 below
-// Features: Map showing NYC over UES and UWS, working markers with popup feature.
+// Features: Map showing NYC over UES and UWS, functional markers with popup feature.
 
 // Importing various things we will need for our map
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -48,18 +48,20 @@ import { Icon } from "leaflet";
 //   },
 // ];
 
-// // Attempt 1 to fetch the Restaurant locations from the internal API
-// const [restaurantLocations, setRestaurantLocations] = useState([]);
-
-// useEffect(()=> {
-//   const fetchRestaurantLocations = async () => {
-//     try {
-//       const response = await fetch(`/api/establishments/${id}`)
-//     }
-//   }
-// });
-
 const MapFeature = () => {
+  const [restaurantData, setRestaurantData] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/establishment")
+      .then((response) => response.json())
+      .then((data) => {
+        setRestaurantData(data);
+      })
+      .catch((error) =>
+        console.error("Error fetching restaurant data:", error)
+      );
+  }, []);
+
   return (
     <>
       <div className="map-about">
@@ -78,7 +80,7 @@ const MapFeature = () => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
 
-        {/*Below code is for the 'markers' array of objects */}
+        {/*Below code is the markers + popups for the 'markers' array of objects */}
         {/* {markers.map((marker) => (
           <Marker position={marker.geocode}>
             <Popup>
@@ -86,6 +88,20 @@ const MapFeature = () => {
             </Popup>
           </Marker>
         ))} */}
+
+        {restaurantData.map((restaurant, index) => (
+          <Marker
+            key={index}
+            position={[restaurant.latitude, restaurant.longitude]}
+          >
+            <Popup>
+              <div>
+                <h3>{restaurant.name}</h3>
+                <h5>{restaurant.address}</h5>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
       </MapContainer>
     </>
   );
