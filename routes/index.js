@@ -17,6 +17,18 @@ router.get("/establishment", async (req, res) => {
   }
 });
 
+// This is so we can access the shelters
+router.get("/shelters", async (req, res) => {
+  try {
+    const query = "SELECT * FROM shelters;";
+    const results = await db(query);
+    res.send(results.data);
+  } catch (error) {
+    console.error("Error getting shelter:", error);
+    res.status(500).send("Error getting shelter:");
+  }
+});
+
 router.get("/establishment/:id", async (req, res) => {
   const { id } = req.params;
 
