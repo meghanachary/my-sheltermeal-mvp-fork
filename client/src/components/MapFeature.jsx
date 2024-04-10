@@ -59,18 +59,7 @@ import { Icon } from "leaflet";
 //   }
 // });
 
-// Attempt at fetching and using the LocationFetch component below
-import { fetchLocations } from "./LocationFetch";
-
 const MapFeature = () => {
-  const [restaurantLocations, setRestaurantLocations] = useState([]);
-
-  useEffect(() => {
-    fetchLocations().then((data) => {
-      setRestaurantLocations(data);
-    });
-  }, []);
-
   return (
     <>
       <div className="map-about">
@@ -97,19 +86,6 @@ const MapFeature = () => {
             </Popup>
           </Marker>
         ))} */}
-
-        {/*Below code is for fetching the internal API */}
-        {restaurantLocations.map((restaurantLocation) => (
-          <Marker
-            key={restaurantLocation.id}
-            position={[
-              restaurantLocation.latitude,
-              restaurantLocation.longitude,
-            ]}
-          >
-            <Popup>{restaurantLocation.name}</Popup>
-          </Marker>
-        ))}
       </MapContainer>
     </>
   );
