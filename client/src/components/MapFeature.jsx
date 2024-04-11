@@ -32,6 +32,18 @@ const MapFeature = () => {
       .catch((error) => console.error("Error fetching shelter data:", error));
   }, []);
 
+  const restaurantIcon = new Icon({
+    iconUrl:
+      "https://em-content.zobj.net/source/toss-face/330/fork-and-knife-with-plate_1f37d-fe0f.png",
+    iconSize: [40, 30],
+  });
+
+  const shelterIcon = new Icon({
+    iconUrl:
+      "https://em-content.zobj.net/source/microsoft/379/pink-heart_1fa77.png",
+    iconSize: [25, 25],
+  });
+
   return (
     <>
       <div className="map-about">
@@ -55,6 +67,7 @@ const MapFeature = () => {
           <Marker
             key={index}
             position={[restaurant.latitude, restaurant.longitude]}
+            icon={restaurantIcon}
           >
             <Popup>
               <div>
@@ -66,7 +79,11 @@ const MapFeature = () => {
         ))}
         {/* Mapping through the shelters to create markers */}
         {shelterData.map((shelter, index) => (
-          <Marker key={index} position={[shelter.latitude, shelter.longitude]}>
+          <Marker
+            key={index}
+            position={[shelter.latitude, shelter.longitude]}
+            icon={shelterIcon}
+          >
             <Popup>
               <div>
                 <h3>{shelter.name}</h3>
