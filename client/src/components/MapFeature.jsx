@@ -34,14 +34,14 @@ const MapFeature = () => {
 
   const restaurantIcon = new Icon({
     iconUrl:
-      "https://em-content.zobj.net/source/toss-face/330/fork-and-knife-with-plate_1f37d-fe0f.png",
-    iconSize: [40, 30],
+      "https://em-content.zobj.net/source/google/387/pot-of-food_1f372.png",
+    iconSize: [40, 45],
   });
 
   const shelterIcon = new Icon({
     iconUrl:
       "https://em-content.zobj.net/source/microsoft/379/pink-heart_1fa77.png",
-    iconSize: [25, 25],
+    iconSize: [35, 35],
   });
 
   return (
