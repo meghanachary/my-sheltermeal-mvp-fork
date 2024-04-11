@@ -50,6 +50,7 @@ import { Icon } from "leaflet";
 
 const MapFeature = () => {
   const [restaurantData, setRestaurantData] = useState([]);
+  const [shelterData, setShelterData] = useState([]);
 
   useEffect(() => {
     fetch("/api/establishment")
@@ -60,6 +61,15 @@ const MapFeature = () => {
       .catch((error) =>
         console.error("Error fetching restaurant data:", error)
       );
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/shelters")
+      .then((response) => response.json())
+      .then((data) => {
+        setShelterData(data);
+      })
+      .catch((error) => console.error("Error fetching shelter data:", error));
   }, []);
 
   return (
@@ -79,7 +89,6 @@ const MapFeature = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-
         {/*Below code is the markers + popups for the 'markers' array of objects */}
         {/* {markers.map((marker) => (
           <Marker position={marker.geocode}>
@@ -88,7 +97,7 @@ const MapFeature = () => {
             </Popup>
           </Marker>
         ))} */}
-
+        {/*Mapping through the restaurants to create markers */}
         {restaurantData.map((restaurant, index) => (
           <Marker
             key={index}
@@ -98,6 +107,17 @@ const MapFeature = () => {
               <div>
                 <h3>{restaurant.name}</h3>
                 <h5>{restaurant.address}</h5>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+        Mapping through the shelters to create markers
+        {shelterData.map((shelter, index) => (
+          <Marker key={index} position={[shelter.latitude, shelter.longitude]}>
+            <Popup>
+              <div>
+                <h3>{shelter.name}</h3>
+                <h5>{shelter.address}</h5>
               </div>
             </Popup>
           </Marker>
