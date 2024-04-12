@@ -48,7 +48,7 @@ const MapFeature = () => {
     <>
       <div className="map-about">
         <h3>
-          Welcome! Here, you can find participating Restaurants (🍴) and
+          Welcome! Here, you can find participating Restaurants (🍲) and
           Shelters(💗) in your area to build connections with your community.
         </h3>
       </div>

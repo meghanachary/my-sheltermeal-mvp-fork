@@ -43,11 +43,11 @@ router.get("/establishment/:id", async (req, res) => {
 });
 
 router.post("/establishment", async (req, res) => {
-  const { name, address, area } = req.body;
+  const { name, address, area, latitude, longitude } = req.body;
 
   try {
     await db(
-      `INSERT INTO establishment (name, address, area) VALUES ('${name}', '${address}','${area}');`
+      `INSERT INTO establishment (name, address, area, latitude, longitude) VALUES ('${name}', '${address}','${area}', '${latitude}, ${longitude});`
     );
     const result = await db("SELECT * FROM establishment;");
     res.send(result.data);
